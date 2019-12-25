@@ -1,6 +1,7 @@
 <template>
 	<div class="parent">
 		<Child @hook:created="createdHandle" @hook:mounted="mountedHandle"></Child>
+		<!-- 具体代码在 src/core/instance/lifecycle.js 中的 callHook -->
 	</div>
 </template>
 
