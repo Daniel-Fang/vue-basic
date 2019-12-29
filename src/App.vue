@@ -1,15 +1,23 @@
 <template>
 	<div id="app">
-		<parent></parent>
 	</div>
 </template>
 
 <script>
-import Parent from '@/components/Parent.vue';
+import Observer from '@/utils/observer/index.js';
 export default {
 	name: 'app',
-	components: {
-		Parent
-	},
+	created () {
+		let data = {
+			name: 'daniel',
+			obj: {
+				age: '20'
+			}
+		};
+
+		new Observer(data);
+		data.obj.age;
+		data.obj.age = '21';
+	}
 };
 </script>
