@@ -1,9 +1,20 @@
-import Dep from './dep.js';
+import Dep from './dep';
+import { arrayMethods, protoAugment, copyAugment } from './array';
+
+const hasProto = '__proto__' in {};
+const arrayKeys = Object.getOwnPropertyNames(arrayMethods);
 
 export default class Observer {
     constructor (value) {
         this.value = value;
-        if (!Array.isArray(value)) {
+        if (Array.isArray(value)) {
+            // 拦截操作只针对被侦测了变化的数据 
+            // ES6 支持 setPrototypeOf 和 getPrototypeOf
+            // value.__proto__ = arrayMethods;  // - 原因：__proto__ 并非所有浏览器都支持 
+            // +
+            const augment = hasProto ? protoAugment : copyAugment;
+            augment(value, arrayMethods, arrayKeys);
+        } else {
             this.walk(value);
         }
     }
@@ -27,7 +38,6 @@ function defineReactive (obj, key, value) {
         enumerable: true,
         configurable: true,
         get () {
-            console.log(`get ${value}`);
             dep.depend();
             return value;
         },
@@ -37,7 +47,6 @@ function defineReactive (obj, key, value) {
             }
             value = newVal;
             dep.notify();
-            console.log(`set ${newVal}`);
         }
     })
 }

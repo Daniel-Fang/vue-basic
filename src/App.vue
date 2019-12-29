@@ -12,7 +12,8 @@ export default {
 			name: 'daniel',
 			obj: {
 				age: '20'
-			}
+			},
+			list: [1, 2, 3]
 		};
 
 		new Observer(data);
