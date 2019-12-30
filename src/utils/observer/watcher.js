@@ -2,7 +2,11 @@ export default class Watcher {
 
     constructor (vm, expOrFn, cb) {
         this.vm = cm;
-        this.getter = parsePath(expOrFn);
+        if (typeof expOrFn === 'function') {
+            this.getter = expOrFn;
+        } else {
+            this.getter = parsePath(expOrFn);
+        }
         this.cb = cb;
     }
 
