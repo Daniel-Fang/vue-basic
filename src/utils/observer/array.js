@@ -8,7 +8,21 @@ export const arrayMethods = Object.create(arrayProto);
         configurable: true,
         writable: true,
         value: function mutator(...args) {
-            return original.apply(this, args); // this 指向 arrayMethods 执行原始方法 返回结果
+            const ob = this.__ob__; // Observer 实例
+            const result = original.apply(this, args); // this 指向 arrayMethods 执行原始方法 返回结果
+            let inserted;
+            switch (method) {
+                case 'push':
+                case 'unshift': 
+                    inserted = args;
+                    break;
+                case 'splice':
+                    inserted = args.slice(2);
+                    break;
+            }
+            if (inserted) ob.observeArray(inserted);
+            ob.dep.notify();
+            return result;
         }
     });
 });
