@@ -2,8 +2,11 @@ export default class Watcher {
 
     constructor (vm, expOrFn, cb) {
         this.vm = cm;
+        this.deps = []; // +
+        this.depIds = new Set(); // +
+
         if (typeof expOrFn === 'function') {
-            this.getter = expOrFn;
+            this.getter = expOrFn; // watcher 对象支持 computed 函数
         } else {
             this.getter = parsePath(expOrFn);
         }
@@ -26,6 +29,15 @@ export default class Watcher {
         const oldValue = this.value;
         this.value = this.get();
         this.cb.call(this.vm, this.value, oldValue);
+    }
+
+    addDep (dep) {
+        const id = dep.id;
+        if (!this.depIds.has(id)) {
+            this.depIds.add(id);
+            this.deps.push(dep);
+            dep.addSubs(this); // 将自己加入 dep 中
+        }
     }
 }
 

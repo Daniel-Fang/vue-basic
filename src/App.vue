@@ -1,12 +1,17 @@
 <template>
 	<div id="app">
+		<Test></Test>
 	</div>
 </template>
 
 <script>
 import Observer from '@/utils/observer/index.js';
+import Test from '@/components/Test.vue';
 export default {
 	name: 'app',
+	components: {
+		Test
+	},
 	created () {
 		let data = {
 			name: 'daniel',
@@ -22,3 +27,10 @@ export default {
 	}
 };
 </script>
+
+<style>
+* {
+	padding: 0;
+	margin: 0;
+}
+</style>

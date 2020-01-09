@@ -1,10 +1,14 @@
+let uid = 0;
+
 export default class Dep {
     constructor () {
         this.subs = []; // subs 存储的是订阅者 即 Watcher
+        this.id = uid++;
     }
 
     addSub (sub) {
-        this.subs.push(sub);
+        // this.subs.push(sub); // -
+        window.EventTarget.addDep(this);
     }
 
     removeSub (sub) {
