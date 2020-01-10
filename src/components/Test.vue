@@ -36,6 +36,8 @@ export default {
         }
     }
 }
+
+// 可以使用有限状态机
 </script>
 
 <style scoped>
@@ -58,6 +60,10 @@ li {
     background: #ccc;
 }
 
+li:hover button{
+    visibility: visible;
+}
+
 
 button {
     width: 56px;
@@ -70,7 +76,6 @@ button.click {
 }
 
 button.click.hover {
-    visibility: visible;
     background: red;
 }
 </style>
