@@ -1,81 +1,30 @@
 <template>
-    <div class="main">
-        <ul>
-            <li v-for="item in list" :key="item" @mouseenter.self="mouseenterHandle" @mouseleave="mouseleaveHandle">
-                <button @click="id = item" :class="{click: id === item, hover: isHover > 1}">Click</button>
-            </li>
-        </ul>
+    <div class="example">
+        {{ count }}
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Test',
+    name: 'Example',
     data () {
         return {
-            list: [1],
-            id: 0,
-            isHover: false
+            count: 0
         }
     },
-    methods: {
-        mouseenterHandle () {
-            console.log('enter')
-            // this.id = 0;
-            this.isHover = this.isHover + 1;
-        },
-        mouseleaveHandle () {
-            // this.isHover = (this.isHover + 1) % 4;
-        }
+    mounted () {
+        this.count++;
+        this.count++;
+        this.count++;
     },
     watch: {
-        isHover () {
-        },
-        id () {
-            // console.log(this.i)
+        count () {
+            console.log(this.count); // 只会执行一次，结果为 3,即最后一个操作的结果。
         }
     }
 }
 
-// 可以使用有限状态机
 </script>
 
 <style scoped>
-* {
-    padding: 0;
-    margin: 0;
-}
-
-ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-li {
-    width: 33.33%;
-    padding: 30px;
-    height: 300px;
-    box-sizing: border-box;
-    background: #ccc;
-}
-
-li:hover button{
-    visibility: visible;
-}
-
-
-button {
-    width: 56px;
-    height: 28px;
-    background: yellow;
-}
-
-button.click {
-    visibility: hidden;
-}
-
-button.click.hover {
-    background: red;
-}
 </style>
