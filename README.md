@@ -20,5 +20,7 @@ npm run build
 npm run lint
 ```
 
+### 记录一些关于vue 的知识点
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -18,7 +18,7 @@ export default {
 			obj: {
 				age: '20'
 			},
-			list: [1, 2, 3]
+			list: [1, 2, 3, 4]
 		};
 
 		new Observer(data);
@@ -27,10 +27,3 @@ export default {
 	}
 };
 </script>
-
-<style>
-* {
-	padding: 0;
-	margin: 0;
-}
-</style>
