@@ -1,6 +1,7 @@
 <template>
 	<div id="app">
-		<Test></Test>
+		<Test v-if="show"></Test>
+		<button @click="show = !show">Click</button>
 	</div>
 </template>
 
@@ -12,18 +13,10 @@ export default {
 	components: {
 		Test
 	},
-	created () {
-		let data = {
-			name: 'daniel',
-			obj: {
-				age: '20'
-			},
-			list: [1, 2, 3, 4]
-		};
-
-		new Observer(data);
-		data.obj.age;
-		data.obj.age = '21';
-	}
+	data () {
+		return {
+			show: true
+		}
+	},
 };
 </script>

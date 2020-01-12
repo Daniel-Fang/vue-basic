@@ -1,6 +1,7 @@
 <template>
     <div class="example">
-        {{ count }}
+        Test 组件
+        <button @click="once">Click once</button>
     </div>
 </template>
 
@@ -9,17 +10,20 @@ export default {
     name: 'Example',
     data () {
         return {
-            count: 0
+
         }
     },
-    mounted () {
-        this.count++;
-        this.count++;
-        this.count++;
+    created () {
+        // this.$eventBus.$on(['click', 'tab'], function (arg) {
+        //     console.log(arg);
+        // });
+        this.$eventBus.$once('click', function (arg) {
+            console.log('once');
+        }, this);
     },
-    watch: {
-        count () {
-            console.log(this.count); // 只会执行一次，结果为 3,即最后一个操作的结果。
+    methods: {
+        once () {
+            this.$eventBus.$emit('click', 'click');
         }
     }
 }
