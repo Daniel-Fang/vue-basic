@@ -28,6 +28,10 @@ class EventBus {
         currentEvents.forEach(eventName => (delete this.handles[eventName]));
     }
 
+    $once (eventName, callback, vm) {
+        
+    }
+
     setEventMapUid (uid, eventName) {
         if (!this.eventMapUid[uid]) {
             this.eventMapUid[uid] = [];
