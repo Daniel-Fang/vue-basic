@@ -63,11 +63,10 @@ class EventBus {
 
 let $EventBus = {};
 $EventBus.install = function (Vue, options) {
-    Vue.prototype.$eventBus = new EventBus(Vue);
+    Vue.prototype.$eventbus = new EventBus(Vue);
     Vue.mixin({
         beforeDestroy () {
-            this.$eventBus.$off(this._uid);
-            console.log('组件销毁了');
+            this.$eventbus.$off(this._uid);
         }
     });
 }

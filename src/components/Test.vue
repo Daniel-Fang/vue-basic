@@ -14,16 +14,16 @@ export default {
         }
     },
     created () {
-        // this.$eventBus.$on(['click', 'tab'], function (arg) {
-        //     console.log(arg);
-        // });
-        this.$eventBus.$once('click', function (arg) {
+        this.$eventBus.$on(['click', 'tab'], function (arg) {
+            console.log(arg);
+        });
+        this.$eventbus.$once('click', function (arg) {
             console.log('once');
         }, this);
     },
     methods: {
         once () {
-            this.$eventBus.$emit('click', 'click');
+            this.$eventbus.$emit('click', 'click');
         }
     }
 }
