@@ -1,7 +1,6 @@
 <template>
     <div class="example">
-        Test 组件
-        <button @click="once">Click once</button>
+       dasdasas
     </div>
 </template>
 
@@ -14,21 +13,20 @@ export default {
         }
     },
     created () {
-        this.$eventBus.$on(['click', 'tab'], function (arg) {
-            console.log(arg);
-        });
-        this.$eventbus.$once('click', function (arg) {
-            console.log('once');
-        }, this);
+        
     },
     methods: {
-        once () {
-            this.$eventbus.$emit('click', 'click');
-        }
+
+    },
+    mounted () {
+		console.log(this.$refs.main.offsetHeight);
     }
 }
 
 </script>
 
 <style scoped>
+.main {
+    height: 300px;
+}
 </style>
